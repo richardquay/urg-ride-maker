@@ -1,0 +1,456 @@
+[
+  {
+    "vibe": "Spicy",
+    "type": "Road",
+    "dropStyle": "No Drop",
+    "date": "May 9",
+    "meetTime": "6:00 PM",
+    "rolloutTime": "6:15 PM",
+    "startLocation": {
+      "name": "Angry Catfish",
+      "url": "https://maps.app.goo.gl/example-angry-catfish",
+      "emoji": "🐟"
+    },
+    "endLocation": null,
+    "distance": null,
+    "routeSource": null,
+    "creatorId": "589994492107423745",
+    "messageId": "1370412297100595351",
+    "channelId": "1369666762601140295",
+    "participants": [],
+    "createdAt": "2025-05-09T14:49:12.958Z"
+  },
+  {
+    "vibe": "Spicy",
+    "type": "Road",
+    "dropStyle": "Drop",
+    "date": "May 15",
+    "meetTime": "10:00 PM",
+    "rolloutTime": "10:15 PM",
+    "startLocation": {
+      "name": "Northern Coffeeworks",
+      "url": "https://maps.app.goo.gl/xLGR16zgg7tWBydbA",
+      "emoji": "☕"
+    },
+    "endLocation": null,
+    "distance": null,
+    "routeSource": null,
+    "creatorId": "589994492107423745",
+    "messageId": "1372714558514397264",
+    "channelId": "1369666762601140295",
+    "participants": [],
+    "createdAt": "2025-05-15T23:17:34.641Z"
+  },
+  {
+    "vibe": "Party",
+    "type": "Mountain",
+    "dropStyle": "No Drop",
+    "date": "May 16",
+    "meetTime": "6:00 PM",
+    "rolloutTime": "6:15 PM",
+    "startLocation": {
+      "name": "Northern Coffeeworks",
+      "url": "https://maps.app.goo.gl/xLGR16zgg7tWBydbA",
+      "emoji": "☕"
+    },
+    "endLocation": null,
+    "distance": null,
+    "routeSource": null,
+    "creatorId": "589994492107423745",
+    "messageId": "1372719173482053685",
+    "channelId": "1369666736424488990",
+    "participants": [],
+    "createdAt": "2025-05-15T23:35:54.927Z"
+  },
+  {
+    "vibe": "Spicy",
+    "type": "Road",
+    "dropStyle": "Drop",
+    "date": "May 15",
+    "meetTime": "5:00 PM",
+    "rolloutTime": "5:15 PM",
+    "startLocation": {
+      "name": "Northern Coffeeworks",
+      "url": "https://maps.app.goo.gl/xLGR16zgg7tWBydbA",
+      "emoji": "☕"
+    },
+    "endLocation": null,
+    "distance": null,
+    "routeSource": null,
+    "creatorId": "589994492107423745",
+    "messageId": "1372721715616026744",
+    "channelId": "1369666762601140295",
+    "participants": [],
+    "createdAt": "2025-05-15T23:46:01.209Z"
+  },
+  {
+    "vibe": "Spicy",
+    "type": "Mountain",
+    "dropStyle": "Drop",
+    "date": "May 15",
+    "meetTime": "10:00 PM",
+    "rolloutTime": "10:15 PM",
+    "startLocation": {
+      "name": "Northern Coffeeworks",
+      "url": "https://maps.app.goo.gl/xLGR16zgg7tWBydbA",
+      "emoji": "☕"
+    },
+    "endLocation": null,
+    "distance": null,
+    "routeSource": null,
+    "creatorId": "589994492107423745",
+    "messageId": "1372723699412762624",
+    "channelId": "1369666736424488990",
+    "participants": [],
+    "createdAt": "2025-05-15T23:53:54.071Z"
+  },
+  {
+    "vibe": "Spicy",
+    "type": "Gravel",
+    "dropStyle": "No Drop",
+    "date": "May 15",
+    "meetTime": "10:00 PM",
+    "rolloutTime": "10:15 PM",
+    "startLocation": {
+      "name": "Northern Coffeeworks",
+      "url": "https://maps.app.goo.gl/xLGR16zgg7tWBydbA",
+      "emoji": "☕"
+    },
+    "endLocation": null,
+    "distance": "50.0 miles",
+    "routeSource": null,
+    "creatorId": "589994492107423745",
+    "messageId": "1372724240125792349",
+    "channelId": "1369666794444296274",
+    "participants": [],
+    "createdAt": "2025-05-15T23:56:03.073Z"
+  },
+  {
+    "vibe": "Spicy",
+    "type": "Road",
+    "dropStyle": "Drop",
+    "date": "May 16",
+    "meetTime": "8:00 PM",
+    "rolloutTime": "8:15 PM",
+    "startLocation": {
+      "name": "Angry Catfish",
+      "url": "https://maps.app.goo.gl/hoCFdQG9eiPjTgaL6",
+      "emoji": "🐟"
+    },
+    "endLocation": {
+      "name": "Venn Brewery",
+      "url": "https://maps.app.goo.gl/ZXY7Zb256S1pEPFTA",
+      "emoji": "🍺"
+    },
+    "distance": null,
+    "routeSource": null,
+    "creatorId": "589994492107423745",
+    "messageId": "1372733459151323156",
+    "channelId": "1369666762601140295",
+    "participants": [],
+    "createdAt": "2025-05-16T00:32:41.087Z"
+  },
+  {
+    "vibe": "Party",
+    "type": "Road",
+    "dropStyle": "No Drop",
+    "date": "May 16",
+    "meetTime": "6:30 PM",
+    "rolloutTime": "7:00 PM",
+    "startLocation": {
+      "name": "Northern Coffeeworks",
+      "url": "https://maps.app.goo.gl/xLGR16zgg7tWBydbA",
+      "emoji": "☕"
+    },
+    "endLocation": {
+      "name": "Venn Brewery",
+      "url": "https://maps.app.goo.gl/ZXY7Zb256S1pEPFTA",
+      "emoji": "🍺"
+    },
+    "distance": null,
+    "routeSource": null,
+    "creatorId": "589994492107423745",
+    "messageId": "1372736621308543106",
+    "channelId": "1369666762601140295",
+    "participants": [],
+    "createdAt": "2025-05-16T00:45:14.960Z"
+  },
+  {
+    "vibe": "Spicy",
+    "type": "Road",
+    "dropStyle": "No Drop",
+    "date": "May 20",
+    "meetTime": "7:00 PM",
+    "rolloutTime": "7:15 PM",
+    "startLocation": {
+      "name": "Angry Catfish",
+      "url": "https://maps.app.goo.gl/hoCFdQG9eiPjTgaL6",
+      "emoji": "🐟"
+    },
+    "endLocation": {
+      "name": "Venn Brewery",
+      "url": "https://maps.app.goo.gl/ZXY7Zb256S1pEPFTA",
+      "emoji": "🍺"
+    },
+    "distance": null,
+    "routeSource": null,
+    "creatorId": "589994492107423745",
+    "messageId": "1372737979784892496",
+    "channelId": "1369666762601140295",
+    "participants": [],
+    "createdAt": "2025-05-16T00:50:38.818Z"
+  },
+  {
+    "vibe": "Spicy",
+    "type": "Gravel",
+    "dropStyle": "No Drop",
+    "date": "May 16",
+    "meetTime": "5:00 PM",
+    "rolloutTime": "5:15 PM",
+    "startLocation": {
+      "name": "Angry Catfish",
+      "url": "https://maps.app.goo.gl/hoCFdQG9eiPjTgaL6",
+      "emoji": "🐟"
+    },
+    "endLocation": {
+      "name": "Venn Brewery",
+      "url": "https://maps.app.goo.gl/ZXY7Zb256S1pEPFTA",
+      "emoji": "🍺"
+    },
+    "distance": null,
+    "routeSource": null,
+    "creatorId": "589994492107423745",
+    "messageId": "1372739070446538773",
+    "channelId": "1369666794444296274",
+    "participants": [],
+    "createdAt": "2025-05-16T00:54:59.068Z"
+  },
+  {
+    "vibe": "Spicy",
+    "type": "Road",
+    "dropStyle": "Drop",
+    "date": "tomorrow",
+    "meetTime": "1pm",
+    "rolloutTime": "+15 mins",
+    "startLocation": {
+      "name": "my house",
+      "url": null
+    },
+    "endLocation": {
+      "name": "Venn Brewery",
+      "url": "https://maps.app.goo.gl/ZXY7Zb256S1pEPFTA",
+      "emoji": "🍺"
+    },
+    "distance": null,
+    "routeSource": null,
+    "creatorId": "589994492107423745",
+    "messageId": "1372742470827507793",
+    "channelId": "1369666762601140295",
+    "participants": [],
+    "createdAt": "2025-05-16T01:08:29.617Z"
+  },
+  {
+    "vibe": "Party",
+    "type": "Road",
+    "dropStyle": "Regroup",
+    "date": "tomorrow",
+    "meetTime": "9pm",
+    "rolloutTime": "+15 mins",
+    "startLocation": {
+      "name": "my house",
+      "url": null
+    },
+    "endLocation": {
+      "name": "Venn Brewery",
+      "url": "https://maps.app.goo.gl/ZXY7Zb256S1pEPFTA",
+      "emoji": "🍺"
+    },
+    "distance": null,
+    "routeSource": null,
+    "creatorId": "589994492107423745",
+    "messageId": "1372743723036840097",
+    "channelId": "1369666762601140295",
+    "participants": [],
+    "createdAt": "2025-05-16T01:13:28.201Z"
+  },
+  {
+    "vibe": "Spicy",
+    "type": "Mountain",
+    "dropStyle": "No Drop",
+    "date": "tomorrow",
+    "meetTime": "5:30pm",
+    "rolloutTime": "+15 mins",
+    "startLocation": {
+      "name": "my house",
+      "url": null
+    },
+    "endLocation": {
+      "name": "Venn Brewery",
+      "url": "https://maps.app.goo.gl/ZXY7Zb256S1pEPFTA",
+      "emoji": "🍺"
+    },
+    "distance": null,
+    "routeSource": null,
+    "creatorId": "589994492107423745",
+    "messageId": "1372744454649417769",
+    "channelId": "1369666736424488990",
+    "participants": [],
+    "createdAt": "2025-05-16T01:16:22.569Z"
+  },
+  {
+    "vibe": "Party",
+    "type": "Road",
+    "dropStyle": "No Drop",
+    "date": "May 16",
+    "meetTime": "3:00 AM",
+    "rolloutTime": "3:15 AM",
+    "startLocation": {
+      "name": "Angry Catfish",
+      "url": "https://maps.app.goo.gl/hoCFdQG9eiPjTgaL6",
+      "emoji": "🐟"
+    },
+    "endLocation": {
+      "name": "Venn Brewery",
+      "url": "https://maps.app.goo.gl/ZXY7Zb256S1pEPFTA",
+      "emoji": "🍺"
+    },
+    "distance": null,
+    "routeSource": null,
+    "notes": "testing to see how this looks",
+    "creatorId": "589994492107423745",
+    "messageId": "1372744573620846712",
+    "channelId": "1369666762601140295",
+    "participants": [],
+    "createdAt": "2025-05-16T01:16:50.981Z"
+  },
+  {
+    "vibe": "Spicy",
+    "type": "Mountain",
+    "dropStyle": "Drop",
+    "date": "May 16",
+    "meetTime": "4:00 AM",
+    "rolloutTime": "4:15 AM",
+    "startLocation": {
+      "name": "Angry Catfish",
+      "url": "https://maps.app.goo.gl/hoCFdQG9eiPjTgaL6",
+      "emoji": "🐟"
+    },
+    "endLocation": {
+      "name": "Venn Brewery",
+      "url": "https://maps.app.goo.gl/ZXY7Zb256S1pEPFTA",
+      "emoji": "🍺"
+    },
+    "distance": null,
+    "routeSource": null,
+    "notes": null,
+    "creatorId": "589994492107423745",
+    "messageId": "1372745088387518464",
+    "channelId": "1369666736424488990",
+    "participants": [],
+    "createdAt": "2025-05-16T01:18:53.623Z"
+  },
+  {
+    "vibe": "Spicy",
+    "type": "Road",
+    "dropStyle": "Drop",
+    "date": "May 16",
+    "meetTime": "6:00 PM",
+    "rolloutTime": "6:15 PM",
+    "startLocation": {
+      "name": "Angry Catfish",
+      "url": "https://maps.app.goo.gl/hoCFdQG9eiPjTgaL6",
+      "emoji": "🐟"
+    },
+    "endLocation": {
+      "name": "Venn Brewery",
+      "url": "https://maps.app.goo.gl/ZXY7Zb256S1pEPFTA",
+      "emoji": "🍺"
+    },
+    "distance": null,
+    "routeSource": null,
+    "notes": "testing to see what this looks like",
+    "creatorId": "589994492107423745",
+    "messageId": "1372745206482604064",
+    "channelId": "1369666762601140295",
+    "participants": [],
+    "createdAt": "2025-05-16T01:19:21.827Z"
+  },
+  {
+    "vibe": "Party",
+    "type": "Mountain",
+    "dropStyle": "No Drop",
+    "date": "May 16",
+    "meetTime": "5:00 PM",
+    "rolloutTime": "5:15 PM",
+    "startLocation": {
+      "name": "Angry Catfish",
+      "url": "https://maps.app.goo.gl/hoCFdQG9eiPjTgaL6",
+      "emoji": "🐟"
+    },
+    "endLocation": {
+      "name": "Venn Brewery",
+      "url": "https://maps.app.goo.gl/ZXY7Zb256S1pEPFTA",
+      "emoji": "🍺"
+    },
+    "distance": null,
+    "routeSource": null,
+    "notes": "testing",
+    "creatorId": "589994492107423745",
+    "messageId": "1372745652681052231",
+    "channelId": "1369666736424488990",
+    "participants": [],
+    "createdAt": "2025-05-16T01:21:08.186Z"
+  },
+  {
+    "vibe": "Spicy",
+    "type": "Social",
+    "dropStyle": "Drop",
+    "date": "May 15",
+    "meetTime": "6:00 PM",
+    "rolloutTime": "6:15 PM",
+    "startLocation": {
+      "name": "Angry Catfish",
+      "url": "https://maps.app.goo.gl/hoCFdQG9eiPjTgaL6",
+      "emoji": "🐟"
+    },
+    "endLocation": {
+      "name": "Venn Brewery",
+      "url": "https://maps.app.goo.gl/ZXY7Zb256S1pEPFTA",
+      "emoji": "🍺"
+    },
+    "distance": null,
+    "routeSource": null,
+    "notes": null,
+    "creatorId": "589994492107423745",
+    "messageId": "1372765187815247915",
+    "channelId": "1370182475170582558",
+    "participants": [],
+    "createdAt": "2025-05-16T02:38:45.815Z"
+  },
+  {
+    "vibe": "Spicy",
+    "type": "Road",
+    "dropStyle": "Drop",
+    "date": "May 16",
+    "meetTime": "6:00 PM",
+    "rolloutTime": "6:15 PM",
+    "startLocation": {
+      "name": "Angry Catfish",
+      "url": "https://maps.app.goo.gl/hoCFdQG9eiPjTgaL6",
+      "emoji": "🐟"
+    },
+    "endLocation": {
+      "name": "Venn Brewery",
+      "url": "https://maps.app.goo.gl/ZXY7Zb256S1pEPFTA",
+      "emoji": "🍺"
+    },
+    "distance": null,
+    "routeSource": null,
+    "notes": null,
+    "creatorId": "589994492107423745",
+    "messageId": "1372765852029685831",
+    "channelId": "1369666762601140295",
+    "participants": [],
+    "createdAt": "2025-05-16T02:41:24.151Z"
+  }
+]
