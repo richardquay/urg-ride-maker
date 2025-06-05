@@ -4,7 +4,7 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 export const data = new SlashCommandBuilder()
-    .setName('settings')
+    .setName('urg-settings')
     .setDescription('Configure bot settings')
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
     .addSubcommand(subcommand =>
