@@ -13,3 +13,56 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Guild {
+  id              String   @id
+  name            String?
+  roadChannelId     String?
+  gravelChannelId   String?
+  mtbChannelId      String?
+  socialChannelId   String?
+  virtualChannelId  String?
+  raceChannelId     String?
+  settings        Json     @default("{}")
+  rides           Ride[]
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Ride {
+  id              String   @id @default(cuid())
+  guildId         String
+  guild           Guild    @relation(fields: [guildId], references: [id])
+  messageId       String?
+  channelId       String
+  creatorId       String
+  type            String
+  vibe            String
+  dropStyle       String
+  date            DateTime
+  meetTime        String
+  rolloutTime     String
+  startLocationName    String
+  startLocationUrl     String?
+  endLocationName      String?
+  endLocationUrl       String?
+  distance        Float?
+  distanceUnit    String?
+  routeSource     String?
+  notes           String?
+  participants    Participant[]
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Participant {
+  id              String   @id @default(cuid())
+  rideId          String
+  ride            Ride     @relation(fields: [rideId], references: [id], onDelete: Cascade)
+  userId          String
+  userName        String
+  status          String   @default("interested")
+  joinedAt        DateTime @default(now())
+
+  @@unique([rideId, userId])
+}
