@@ -1,24 +1,20 @@
 import { readdirSync } from 'fs';
-import { join, extname } from 'path';
-import { client } from '../config/client.js';
-
+import { join } from 'path';
+import { client } from '../config/client';
 export async function loadEvents() {
     const eventsPath = join(__dirname);
-    
     // Read all event files
     const eventFiles = readdirSync(eventsPath)
-        .filter(file => (file.endsWith('.ts') || file.endsWith('.js')) && file !== 'loadEvents.ts' && file !== 'loadEvents.js');
-    
+        .filter(file => file.endsWith('.ts') && file !== 'loadEvents.ts');
     for (const file of eventFiles) {
-        let filePath = join(eventsPath, file);
-        if (extname(filePath) === '.ts') filePath = filePath.replace(/\.ts$/, '.js');
+        const filePath = join(eventsPath, file);
         const event = await import(filePath);
         if (event.once) {
             client.once(event.name, (...args) => event.execute(...args));
-        } else {
+        }
+        else {
             client.on(event.name, (...args) => event.execute(...args));
         }
     }
-    
     console.log('Successfully loaded event handlers.');
-} 
+}

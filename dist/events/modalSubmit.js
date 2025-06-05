@@ -1,18 +1,13 @@
-import { ModalSubmitInteraction } from 'discord.js';
 import { PrismaClient } from '@prisma/client';
-import { validateLocationUrl } from '../utils/locationUtils.js';
-
+import { validateLocationUrl } from '../utils/locationUtils';
 const prisma = new PrismaClient();
-
 export const name = 'modalSubmit';
 export const once = false;
-
-export async function execute(interaction: ModalSubmitInteraction) {
+export async function execute(interaction) {
     if (interaction.customId === 'location-modal') {
         try {
             const locationName = interaction.fields.getTextInputValue('locationName');
             const locationUrl = interaction.fields.getTextInputValue('locationUrl');
-
             if (!validateLocationUrl(locationUrl)) {
                 await interaction.reply({
                     content: 'Please provide a valid URL for the location.',
@@ -20,15 +15,14 @@ export async function execute(interaction: ModalSubmitInteraction) {
                 });
                 return;
             }
-
             // Store the custom location in the database
             // TODO: Implement custom location storage
-
             await interaction.reply({
                 content: 'Custom location details received. Please use the `/create-ride` command again with your custom location.',
                 ephemeral: true
             });
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error handling location modal:', error);
             await interaction.reply({
                 content: 'Sorry, there was an error processing your location details. Please try again.',
@@ -36,4 +30,4 @@ export async function execute(interaction: ModalSubmitInteraction) {
             });
         }
     }
-} 
+}

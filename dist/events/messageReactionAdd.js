@@ -1,30 +1,25 @@
-import { MessageReaction, User, PartialUser, Message, EmbedBuilder } from 'discord.js';
 import { PrismaClient } from '@prisma/client';
-import { client } from '../config/client.js';
-
 const prisma = new PrismaClient();
-
 export const name = 'messageReactionAdd';
 export const once = false;
-
-export async function execute(reaction: MessageReaction, user: User | PartialUser) {
+export async function execute(reaction, user) {
     // Ignore bot reactions
-    if (user.bot) return;
-
+    if (user.bot)
+        return;
     // Handle partial reactions
     if (reaction.partial) {
         try {
             await reaction.fetch();
-        } catch (error) {
+        }
+        catch (error) {
             console.error('Error fetching reaction:', error);
             return;
         }
     }
-
     // Get the message
     const message = reaction.message;
-    if (!message.guild) return;
-
+    if (!message.guild)
+        return;
     try {
         // Find the ride in the database
         const ride = await prisma.ride.findFirst({
@@ -36,9 +31,8 @@ export async function execute(reaction: MessageReaction, user: User | PartialUse
                 participants: true
             }
         });
-
-        if (!ride) return;
-
+        if (!ride)
+            return;
         // Handle different reaction types
         switch (reaction.emoji.name) {
             case '👍': // Interested
@@ -48,16 +42,14 @@ export async function execute(reaction: MessageReaction, user: User | PartialUse
                 await handleParticipant(ride.id, user.id, user.username || 'Unknown User', 'maybe');
                 break;
         }
-
         // Update the ride message with new participant list
         await updateRideMessage(message, ride.id);
-
-    } catch (error) {
+    }
+    catch (error) {
         console.error('Error handling reaction:', error);
     }
 }
-
-async function handleParticipant(rideId: string, userId: string, userName: string, status: string) {
+async function handleParticipant(rideId, userId, userName, status) {
     // Remove any existing participation
     await prisma.participant.deleteMany({
         where: {
@@ -65,7 +57,6 @@ async function handleParticipant(rideId: string, userId: string, userName: strin
             userId
         }
     });
-
     // Add new participation
     await prisma.participant.create({
         data: {
@@ -76,53 +67,44 @@ async function handleParticipant(rideId: string, userId: string, userName: strin
         }
     });
 }
-
-async function updateRideMessage(message: Message | any, rideId: string) {
+async function updateRideMessage(message, rideId) {
     const ride = await prisma.ride.findUnique({
         where: { id: rideId },
         include: {
             participants: true
         }
     });
-
-    if (!ride) return;
-
+    if (!ride)
+        return;
     // Get the original embed
     const embed = message.embeds[0];
-    if (!embed) return;
-
+    if (!embed)
+        return;
     // Update participant lists
     const interestedParticipants = ride.participants
-        .filter((p: { status: string }) => p.status === 'interested')
-        .map((p: { userId: string }) => `<@${p.userId}>`)
+        .filter((p) => p.status === 'interested')
+        .map((p) => `<@${p.userId}>`)
         .join('\n');
-
     const maybeParticipants = ride.participants
-        .filter((p: { status: string }) => p.status === 'maybe')
-        .map((p: { userId: string }) => `<@${p.userId}>`)
+        .filter((p) => p.status === 'maybe')
+        .map((p) => `<@${p.userId}>`)
         .join('\n');
-
     // Update the embed fields
-    const updatedFields = embed.fields.filter((field: { name: string }) => 
-        !field.name.startsWith('Participants') && !field.name.startsWith('Maybe')
-    );
-
+    const updatedFields = embed.fields.filter((field) => !field.name.startsWith('Participants') && !field.name.startsWith('Maybe'));
     if (interestedParticipants) {
         updatedFields.push({
-            name: `Participants (${ride.participants.filter((p: { status: string }) => p.status === 'interested').length})`,
+            name: `Participants (${ride.participants.filter((p) => p.status === 'interested').length})`,
             value: interestedParticipants,
             inline: false
         });
     }
-
     if (maybeParticipants) {
         updatedFields.push({
-            name: `Maybe (${ride.participants.filter((p: { status: string }) => p.status === 'maybe').length})`,
+            name: `Maybe (${ride.participants.filter((p) => p.status === 'maybe').length})`,
             value: maybeParticipants,
             inline: false
         });
     }
-
     // Update the message
     await message.edit({ embeds: [{ ...embed, fields: updatedFields }] });
-} 
+}
