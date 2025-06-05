@@ -1,4 +1,4 @@
-import { startBot } from './config/client';
+import { client, startBot } from './config/client';
 import { loadCommands } from './commands/loadCommands';
 import { loadEvents } from './events/loadEvents';
 

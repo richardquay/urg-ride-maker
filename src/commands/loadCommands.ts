@@ -13,7 +13,8 @@ export async function loadCommands() {
     const commandFiles = readdirSync(commandsPath).filter(file => file.endsWith('.ts'));
     
     for (const file of commandFiles) {
-        const command = require(join(commandsPath, file));
+        const filePath = join(commandsPath, file);
+        const command = await import(filePath);
         if ('data' in command && 'execute' in command) {
             commands.push(command.data.toJSON());
         }

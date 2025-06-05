@@ -10,7 +10,8 @@ export async function loadEvents() {
         .filter(file => file.endsWith('.ts') && file !== 'loadEvents.ts');
     
     for (const file of eventFiles) {
-        const event = require(join(eventsPath, file));
+        const filePath = join(eventsPath, file);
+        const event = await import(filePath);
         if (event.once) {
             client.once(event.name, (...args) => event.execute(...args));
         } else {

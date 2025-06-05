@@ -2,6 +2,7 @@
   "name": "urg-ride-maker-v3_dbbased",
   "version": "1.0.0",
   "description": "Discord bot for organizing group cycling rides",
+  "type": "module",
   "main": "dist/index.js",
   "scripts": {
     "start": "node dist/index.js",
