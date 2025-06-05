@@ -1,15 +1,17 @@
 import { REST, Routes } from 'discord.js';
 import { config } from 'dotenv';
 import { readdirSync } from 'fs';
-import { join } from 'path';
+import { join, extname } from 'path';
 config();
 export async function loadCommands() {
     const commands = [];
     const commandsPath = join(__dirname, 'slash');
     // Read all command files
-    const commandFiles = readdirSync(commandsPath).filter(file => file.endsWith('.ts'));
+    const commandFiles = readdirSync(commandsPath).filter(file => file.endsWith('.ts') || file.endsWith('.js'));
     for (const file of commandFiles) {
-        const filePath = join(commandsPath, file);
+        let filePath = join(commandsPath, file);
+        if (extname(filePath) === '.ts')
+            filePath = filePath.replace(/\.ts$/, '.js');
         const command = await import(filePath);
         if ('data' in command && 'execute' in command) {
             commands.push(command.data.toJSON());

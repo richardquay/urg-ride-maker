@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-import { validateLocationUrl } from '../utils/locationUtils';
+import { validateLocationUrl } from '../utils/locationUtils.js';
 const prisma = new PrismaClient();
 export const name = 'modalSubmit';
 export const once = false;

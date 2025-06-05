@@ -1,8 +1,8 @@
 import { SlashCommandBuilder, EmbedBuilder, ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder } from 'discord.js';
 import { PrismaClient } from '@prisma/client';
-import { parseDate, parseTime, calculateRolloutTime, formatDate } from '../../utils/dateTimeUtils';
-import { parseDistance, formatDistance } from '../../utils/distanceUtils';
-import { getLocationInfo, formatLocation } from '../../utils/locationUtils';
+import { parseDate, parseTime, calculateRolloutTime, formatDate } from '../../utils/dateTimeUtils.js';
+import { parseDistance, formatDistance } from '../../utils/distanceUtils.js';
+import { getLocationInfo, formatLocation } from '../../utils/locationUtils.js';
 const prisma = new PrismaClient();
 export const data = new SlashCommandBuilder()
     .setName('create-ride')

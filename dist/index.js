@@ -1,6 +1,6 @@
-import { startBot } from './config/client';
-import { loadCommands } from './commands/loadCommands';
-import { loadEvents } from './events/loadEvents';
+import { startBot } from './config/client.js';
+import { loadCommands } from './commands/loadCommands.js';
+import { loadEvents } from './events/loadEvents.js';
 async function main() {
     try {
         // Load commands and events

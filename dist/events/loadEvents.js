@@ -1,13 +1,15 @@
 import { readdirSync } from 'fs';
-import { join } from 'path';
-import { client } from '../config/client';
+import { join, extname } from 'path';
+import { client } from '../config/client.js';
 export async function loadEvents() {
     const eventsPath = join(__dirname);
     // Read all event files
     const eventFiles = readdirSync(eventsPath)
-        .filter(file => file.endsWith('.ts') && file !== 'loadEvents.ts');
+        .filter(file => (file.endsWith('.ts') || file.endsWith('.js')) && file !== 'loadEvents.ts' && file !== 'loadEvents.js');
     for (const file of eventFiles) {
-        const filePath = join(eventsPath, file);
+        let filePath = join(eventsPath, file);
+        if (extname(filePath) === '.ts')
+            filePath = filePath.replace(/\.ts$/, '.js');
         const event = await import(filePath);
         if (event.once) {
             client.once(event.name, (...args) => event.execute(...args));
