@@ -30,6 +30,7 @@ export const data = new SlashCommandBuilder()
                     .setRequired(true)));
 
 export async function execute(interaction) {
+    console.log('urg-settings command invoked', { guildId: interaction.guildId, user: interaction.user?.id });
     if (!interaction.guildId) {
         await interaction.reply({
             content: 'This command can only be used in a server.',
@@ -39,12 +40,15 @@ export async function execute(interaction) {
     }
 
     const subcommand = interaction.options.getSubcommand();
+    console.log('Subcommand:', subcommand);
 
     if (subcommand === 'channels') {
         const type = interaction.options.getString('type', true);
         const channel = interaction.options.getChannel('channel', true);
+        console.log('Channel config requested', { type, channelId: channel?.id });
 
         try {
+            await interaction.deferReply({ ephemeral: true });
             // Get or create guild settings
             const guild = await prisma.guild.upsert({
                 where: { id: interaction.guildId },
@@ -122,14 +126,28 @@ export async function execute(interaction) {
                     }
                 );
 
-            await interaction.reply({ embeds: [embed] });
+            await interaction.editReply({ embeds: [embed] });
+            console.log('Channel configuration updated successfully');
 
         } catch (error) {
             console.error('Error updating channel configuration:', error);
-            await interaction.reply({
-                content: 'There was an error updating the channel configuration. Please try again.',
-                ephemeral: true
-            });
+            // Try to reply or edit the reply depending on state
+            try {
+                if (interaction.deferred || interaction.replied) {
+                    await interaction.editReply({
+                        content: 'There was an error updating the channel configuration. Please try again.',
+                        embeds: [],
+                        ephemeral: true
+                    });
+                } else {
+                    await interaction.reply({
+                        content: 'There was an error updating the channel configuration. Please try again.',
+                        ephemeral: true
+                    });
+                }
+            } catch (err) {
+                console.error('Failed to send error reply:', err);
+            }
         }
     }
 } 
