@@ -9,6 +9,7 @@ const prisma = new PrismaClient();
 export const data = new SlashCommandBuilder()
     .setName('create-ride')
     .setDescription('Create a new cycling ride')
+    // Required options first
     .addStringOption(option =>
         option.setName('vibe')
             .setDescription('The vibe of the ride')
@@ -46,6 +47,16 @@ export const data = new SlashCommandBuilder()
             .setDescription('When to arrive (e.g., "9:00 AM", "21:00")')
             .setRequired(true))
     .addStringOption(option =>
+        option.setName('start_location')
+            .setDescription('Where to meet')
+            .setRequired(true)
+            .addChoices(
+                { name: 'Angry Catfish', value: 'ANGRY_CATFISH' },
+                { name: 'Northern Coffeeworks', value: 'NORTHERN_COFFEEWORKS' },
+                { name: 'Other', value: 'OTHER' }
+            ))
+    // Optional options after all required
+    .addStringOption(option =>
         option.setName('rollout_time')
             .setDescription('Minutes after meet time to start')
             .setRequired(false)
@@ -55,15 +66,6 @@ export const data = new SlashCommandBuilder()
                 { name: '30 minutes', value: '30' },
                 { name: '45 minutes', value: '45' },
                 { name: '60 minutes', value: '60' }
-            ))
-    .addStringOption(option =>
-        option.setName('start_location')
-            .setDescription('Where to meet')
-            .setRequired(true)
-            .addChoices(
-                { name: 'Angry Catfish', value: 'ANGRY_CATFISH' },
-                { name: 'Northern Coffeeworks', value: 'NORTHERN_COFFEEWORKS' },
-                { name: 'Other', value: 'OTHER' }
             ))
     .addStringOption(option =>
         option.setName('end_location')
@@ -85,7 +87,7 @@ export const data = new SlashCommandBuilder()
             .setRequired(false))
     .addStringOption(option =>
         option.setName('notes')
-            .setDescription('Additional information about the ride')
+            .setDescription('Additional notes for the ride')
             .setRequired(false));
 
 export async function execute(interaction) {
