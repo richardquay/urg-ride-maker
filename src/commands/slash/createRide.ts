@@ -179,8 +179,8 @@ export async function execute(interaction: ChatInputCommandInteraction) {
         const rolloutTime = calculateRolloutTime(meetTime, rolloutTimeStr);
 
         // Parse distance if provided
-        let distance = null;
-        let distanceUnit = null;
+        let distance: number | null = null;
+        let distanceUnit: string | null = null;
         if (distanceStr) {
             const parsedDistance = parseDistance(distanceStr);
             distance = parsedDistance.distance;
@@ -207,8 +207,8 @@ export async function execute(interaction: ChatInputCommandInteraction) {
                 startLocationUrl: startLocation.url ?? undefined,
                 endLocationName: endLocation.name,
                 endLocationUrl: endLocation.url ?? undefined,
-                distance,
-                distanceUnit,
+                distance: distance ?? undefined,
+                distanceUnit: distanceUnit ?? undefined,
                 routeSource: routeSource ?? undefined,
                 notes: notes ?? undefined
             }
