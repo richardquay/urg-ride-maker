@@ -204,13 +204,13 @@ export async function execute(interaction: ChatInputCommandInteraction) {
                 meetTime,
                 rolloutTime,
                 startLocationName: startLocation.name,
-                startLocationUrl: startLocation.url,
+                startLocationUrl: startLocation.url ?? undefined,
                 endLocationName: endLocation.name,
-                endLocationUrl: endLocation.url,
+                endLocationUrl: endLocation.url ?? undefined,
                 distance,
                 distanceUnit,
-                routeSource,
-                notes
+                routeSource: routeSource ?? undefined,
+                notes: notes ?? undefined
             }
         });
 
