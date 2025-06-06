@@ -48,7 +48,7 @@ export const data = new SlashCommandBuilder()
     .addStringOption(option =>
         option.setName('rollout_time')
             .setDescription('Minutes after meet time to start')
-            .setRequired(true)
+            .setRequired(false)
             .addChoices(
                 { name: '0 minutes', value: '0' },
                 { name: '15 minutes', value: '15' },
@@ -96,12 +96,33 @@ export async function execute(interaction) {
         const dropStyle = interaction.options.getString('drop_style', true);
         const dateStr = interaction.options.getString('date', true);
         const meetTimeStr = interaction.options.getString('meet_time', true);
-        const rolloutTimeStr = interaction.options.getString('rollout_time', true);
+        const rolloutTimeStr = interaction.options.getString('rollout_time') ?? '15'; // Default to 15 if not provided
         const startLocationCode = interaction.options.getString('start_location', true);
         const endLocationCode = interaction.options.getString('end_location') || 'SAME';
         const distanceStr = interaction.options.getString('distance');
         const routeSource = interaction.options.getString('route_source');
         const notes = interaction.options.getString('notes');
+
+        // Hardcoded channel IDs for each ride type
+        const CHANNEL_IDS = {
+            ROAD: '1369666762601140295',
+            GRAVEL: '1369666794444296274',
+            MOUNTAIN: '1369666736424488990',
+            SOCIAL: '1370182475170582558',
+            VIRTUAL: '1380541852360507473',
+            RACE: '1380541994593419326'
+        };
+
+        // Get the target channel for this ride type
+        const targetChannelId = CHANNEL_IDS[type];
+
+        if (!targetChannelId) {
+            await interaction.reply({
+                content: `No channel has been configured for ${type.toLowerCase()} rides. Please contact an administrator.`,
+                ephemeral: true
+            });
+            return;
+        }
 
         // Check if the ride type is allowed in the current channel
         const guild = await prisma.guild.findUnique({
@@ -111,37 +132,6 @@ export async function execute(interaction) {
         if (!guild) {
             await interaction.reply({
                 content: 'This server has not been configured for ride creation. Please contact an administrator.',
-                ephemeral: true
-            });
-            return;
-        }
-
-        // Get the target channel for this ride type
-        let targetChannelId;
-        switch (type) {
-            case 'ROAD':
-                targetChannelId = guild.roadChannelId ?? undefined;
-                break;
-            case 'GRAVEL':
-                targetChannelId = guild.gravelChannelId ?? undefined;
-                break;
-            case 'MOUNTAIN':
-                targetChannelId = guild.mtbChannelId ?? undefined;
-                break;
-            case 'SOCIAL':
-                targetChannelId = guild.socialChannelId ?? undefined;
-                break;
-            case 'VIRTUAL':
-                targetChannelId = guild.virtualChannelId ?? undefined;
-                break;
-            case 'RACE':
-                targetChannelId = guild.raceChannelId ?? undefined;
-                break;
-        }
-
-        if (!targetChannelId) {
-            await interaction.reply({
-                content: `No channel has been configured for ${type.toLowerCase()} rides. Please contact an administrator.`,
                 ephemeral: true
             });
             return;
