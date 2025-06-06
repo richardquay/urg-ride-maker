@@ -120,22 +120,22 @@ export async function execute(interaction: ChatInputCommandInteraction) {
         let targetChannelId: string | undefined;
         switch (type) {
             case 'ROAD':
-                targetChannelId = guild.roadChannelId;
+                targetChannelId = guild.roadChannelId ?? undefined;
                 break;
             case 'GRAVEL':
-                targetChannelId = guild.gravelChannelId;
+                targetChannelId = guild.gravelChannelId ?? undefined;
                 break;
             case 'MOUNTAIN':
-                targetChannelId = guild.mtbChannelId;
+                targetChannelId = guild.mtbChannelId ?? undefined;
                 break;
             case 'SOCIAL':
-                targetChannelId = guild.socialChannelId;
+                targetChannelId = guild.socialChannelId ?? undefined;
                 break;
             case 'VIRTUAL':
-                targetChannelId = guild.virtualChannelId;
+                targetChannelId = guild.virtualChannelId ?? undefined;
                 break;
             case 'RACE':
-                targetChannelId = guild.raceChannelId;
+                targetChannelId = guild.raceChannelId ?? undefined;
                 break;
         }
 
