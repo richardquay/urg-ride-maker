@@ -1,9 +1,4 @@
-interface Location {
-    name: string;
-    url?: string;
-}
-
-const LOCATIONS: Record<string, Location> = {
+const LOCATIONS = {
     'ANGRY_CATFISH': {
         name: 'Angry Catfish',
         url: 'https://goo.gl/maps/your-angry-catfish-url'
@@ -14,7 +9,7 @@ const LOCATIONS: Record<string, Location> = {
     }
 };
 
-export function getLocationInfo(locationCode: string): Location {
+export function getLocationInfo(locationCode) {
     if (locationCode === 'OTHER') {
         throw new Error('Please provide custom location details');
     }
@@ -27,14 +22,14 @@ export function getLocationInfo(locationCode: string): Location {
     return location;
 }
 
-export function formatLocation(location: Location): string {
+export function formatLocation(location) {
     if (location.url) {
         return `[${location.name}](${location.url})`;
     }
     return location.name;
 }
 
-export function validateLocationUrl(url: string): boolean {
+export function validateLocationUrl(url) {
     try {
         const parsedUrl = new URL(url);
         return parsedUrl.protocol === 'http:' || parsedUrl.protocol === 'https:';

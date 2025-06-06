@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 export const name = 'modalSubmit';
 export const once = false;
 
-export async function execute(interaction: ModalSubmitInteraction) {
+export async function execute(interaction) {
     if (interaction.customId === 'location-modal') {
         try {
             const locationName = interaction.fields.getTextInputValue('locationName');

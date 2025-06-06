@@ -1,6 +1,6 @@
 import { parse, format, addMinutes, addDays, addWeeks, isAfter, isBefore } from 'date-fns';
 
-export function parseDate(dateStr: string): Date {
+export function parseDate(dateStr) {
     // Try parsing relative dates first
     const now = new Date();
     
@@ -21,7 +21,7 @@ export function parseDate(dateStr: string): Date {
         };
         
         if (dayOfWeek in days) {
-            const targetDay = days[dayOfWeek as keyof typeof days];
+            const targetDay = days[dayOfWeek];
             const currentDay = now.getDay();
             const daysToAdd = (targetDay - currentDay + 7) % 7;
             return addDays(now, daysToAdd + 7);
@@ -41,7 +41,7 @@ export function parseDate(dateStr: string): Date {
     }
 }
 
-export function parseTime(timeStr: string): string {
+export function parseTime(timeStr) {
     // Try parsing various time formats
     const formats = [
         'h:mm a',    // 9:00 AM
@@ -63,12 +63,12 @@ export function parseTime(timeStr: string): string {
     throw new Error('Invalid time format. Please use formats like "9:00 AM", "21:00", "9AM", etc.');
 }
 
-export function calculateRolloutTime(meetTime: string, rolloutMinutes: string): string {
+export function calculateRolloutTime(meetTime, rolloutMinutes) {
     const parsedMeetTime = parse(meetTime, 'h:mm a', new Date());
     const rolloutTime = addMinutes(parsedMeetTime, parseInt(rolloutMinutes));
     return format(rolloutTime, 'h:mm a');
 }
 
-export function formatDate(date: Date): string {
+export function formatDate(date) {
     return format(date, 'MMMM d');
 } 

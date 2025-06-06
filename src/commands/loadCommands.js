@@ -14,7 +14,9 @@ export async function loadCommands() {
     const commandsPath = join(__dirname, 'slash');
     
     // Read all command files
-    const commandFiles = readdirSync(commandsPath).filter(file => file.endsWith('.ts') || file.endsWith('.js'));
+    const commandFiles = readdirSync(commandsPath).filter(function(file) {
+        return file.endsWith('.ts') || file.endsWith('.js');
+    });
     
     for (const file of commandFiles) {
         let filePath = join(commandsPath, file);
@@ -26,13 +28,13 @@ export async function loadCommands() {
     }
     
     // Register commands with Discord
-    const rest = new REST().setToken(process.env.DISCORD_TOKEN!);
+    const rest = new REST().setToken(process.env.DISCORD_TOKEN);
     
     try {
         console.log('Started refreshing application (/) commands.');
         
         await rest.put(
-            Routes.applicationCommands(process.env.CLIENT_ID!),
+            Routes.applicationCommands(process.env.DISCORD_CLIENT_ID),
             { body: commands },
         );
         

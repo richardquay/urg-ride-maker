@@ -5,17 +5,20 @@
   "type": "module",
   "main": "dist/index.js",
   "scripts": {
-    "start": "node dist/index.js",
-    "dev": "nodemon src/index.ts",
-    "build": "tsc",
-    "watch": "tsc -w",
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:studio": "prisma studio",
     "postinstall": "prisma generate",
     "migrate:deploy": "prisma migrate deploy"
   },
-  "keywords": ["discord", "bot", "cycling", "rides"],
+  "keywords": [
+    "discord",
+    "bot",
+    "cycling",
+    "rides"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -26,10 +29,7 @@
     "node-cron": "^3.0.3"
   },
   "devDependencies": {
-    "@types/node": "^20.11.24",
     "nodemon": "^3.1.0",
-    "prisma": "^5.10.0",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.3.3"
+    "prisma": "^5.10.0"
   }
 }

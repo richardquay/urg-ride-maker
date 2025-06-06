@@ -1,4 +1,4 @@
-export function parseDistance(distanceStr: string): { distance: number; unit: string } {
+export function parseDistance(distanceStr) {
     // Remove any whitespace and convert to lowercase
     const cleanStr = distanceStr.trim().toLowerCase();
     
@@ -25,14 +25,14 @@ export function parseDistance(distanceStr: string): { distance: number; unit: st
     return { distance, unit: 'miles' };
 }
 
-export function convertToMiles(distance: number, unit: string): number {
+export function convertToMiles(distance, unit) {
     if (unit === 'kilometers') {
         return distance * 0.621371;
     }
     return distance;
 }
 
-export function formatDistance(distance: number, unit: string): string {
+export function formatDistance(distance, unit) {
     const miles = convertToMiles(distance, unit);
     return `${miles.toFixed(1)} miles`;
 } 

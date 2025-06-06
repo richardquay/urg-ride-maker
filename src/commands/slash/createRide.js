@@ -88,7 +88,7 @@ export const data = new SlashCommandBuilder()
             .setDescription('Additional information about the ride')
             .setRequired(false));
 
-export async function execute(interaction: ChatInputCommandInteraction) {
+export async function execute(interaction) {
     try {
         // Get all options
         const vibe = interaction.options.getString('vibe', true);
@@ -105,7 +105,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
 
         // Check if the ride type is allowed in the current channel
         const guild = await prisma.guild.findUnique({
-            where: { id: interaction.guildId! }
+            where: { id: interaction.guildId }
         });
 
         if (!guild) {
@@ -117,7 +117,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
         }
 
         // Get the target channel for this ride type
-        let targetChannelId: string | undefined;
+        let targetChannelId;
         switch (type) {
             case 'ROAD':
                 targetChannelId = guild.roadChannelId ?? undefined;
@@ -165,8 +165,8 @@ export async function execute(interaction: ChatInputCommandInteraction) {
                 .setStyle(TextInputStyle.Short)
                 .setRequired(true);
 
-            const firstActionRow = new ActionRowBuilder<TextInputBuilder>().addComponents(locationNameInput);
-            const secondActionRow = new ActionRowBuilder<TextInputBuilder>().addComponents(locationUrlInput);
+            const firstActionRow = new ActionRowBuilder().addComponents(locationNameInput);
+            const secondActionRow = new ActionRowBuilder().addComponents(locationUrlInput);
 
             modal.addComponents(firstActionRow, secondActionRow);
             await interaction.showModal(modal);
@@ -179,8 +179,8 @@ export async function execute(interaction: ChatInputCommandInteraction) {
         const rolloutTime = calculateRolloutTime(meetTime, rolloutTimeStr);
 
         // Parse distance if provided
-        let distance: number | null = null;
-        let distanceUnit: string | null = null;
+        let distance = null;
+        let distanceUnit = null;
         if (distanceStr) {
             const parsedDistance = parseDistance(distanceStr);
             distance = parsedDistance.distance;
@@ -194,7 +194,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
         // Create the ride in the database
         const ride = await prisma.ride.create({
             data: {
-                guildId: interaction.guildId!,
+                guildId: interaction.guildId,
                 channelId: targetChannelId,
                 creatorId: interaction.user.id,
                 type,
@@ -232,7 +232,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
         if (distance) {
             embed.addFields({ 
                 name: 'Distance', 
-                value: formatDistance(distance, distanceUnit!), 
+                value: formatDistance(distance, distanceUnit), 
                 inline: true 
             });
         }
@@ -292,7 +292,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
     }
 }
 
-function getRideTypeColor(type: string): number {
+function getRideTypeColor(type) {
     const colors = {
         'ROAD': 0x0099FF,
         'GRAVEL': 0x8B4513,
@@ -301,5 +301,5 @@ function getRideTypeColor(type: string): number {
         'VIRTUAL': 0x9370DB,
         'RACE': 0xFF0000
     };
-    return colors[type as keyof typeof colors] || 0x000000;
+    return colors[type] || 0x000000;
 } 

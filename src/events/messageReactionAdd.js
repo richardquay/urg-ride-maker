@@ -1,4 +1,5 @@
-import { MessageReaction, User, PartialUser, Message, EmbedBuilder } from 'discord.js';
+import pkg from 'discord.js';
+const { MessageReaction, User, PartialUser, Message, EmbedBuilder } = pkg;
 import { PrismaClient } from '@prisma/client';
 import { client } from '../config/client.js';
 
@@ -7,7 +8,7 @@ const prisma = new PrismaClient();
 export const name = 'messageReactionAdd';
 export const once = false;
 
-export async function execute(reaction: MessageReaction, user: User | PartialUser) {
+export async function execute(reaction, user) {
     // Ignore bot reactions
     if (user.bot) return;
 
@@ -57,7 +58,7 @@ export async function execute(reaction: MessageReaction, user: User | PartialUse
     }
 }
 
-async function handleParticipant(rideId: string, userId: string, userName: string, status: string) {
+async function handleParticipant(rideId, userId, userName, status) {
     // Remove any existing participation
     await prisma.participant.deleteMany({
         where: {
@@ -77,7 +78,7 @@ async function handleParticipant(rideId: string, userId: string, userName: strin
     });
 }
 
-async function updateRideMessage(message: Message | any, rideId: string) {
+async function updateRideMessage(message, rideId) {
     const ride = await prisma.ride.findUnique({
         where: { id: rideId },
         include: {
@@ -93,23 +94,23 @@ async function updateRideMessage(message: Message | any, rideId: string) {
 
     // Update participant lists
     const interestedParticipants = ride.participants
-        .filter((p: { status: string }) => p.status === 'interested')
-        .map((p: { userId: string }) => `<@${p.userId}>`)
+        .filter((p) => p.status === 'interested')
+        .map((p) => `<@${p.userId}>`)
         .join('\n');
 
     const maybeParticipants = ride.participants
-        .filter((p: { status: string }) => p.status === 'maybe')
-        .map((p: { userId: string }) => `<@${p.userId}>`)
+        .filter((p) => p.status === 'maybe')
+        .map((p) => `<@${p.userId}>`)
         .join('\n');
 
     // Update the embed fields
-    const updatedFields = embed.fields.filter((field: { name: string }) => 
+    const updatedFields = embed.fields.filter((field) => 
         !field.name.startsWith('Participants') && !field.name.startsWith('Maybe')
     );
 
     if (interestedParticipants) {
         updatedFields.push({
-            name: `Participants (${ride.participants.filter((p: { status: string }) => p.status === 'interested').length})`,
+            name: `Participants (${ride.participants.filter((p) => p.status === 'interested').length})`,
             value: interestedParticipants,
             inline: false
         });
@@ -117,7 +118,7 @@ async function updateRideMessage(message: Message | any, rideId: string) {
 
     if (maybeParticipants) {
         updatedFields.push({
-            name: `Maybe (${ride.participants.filter((p: { status: string }) => p.status === 'maybe').length})`,
+            name: `Maybe (${ride.participants.filter((p) => p.status === 'maybe').length})`,
             value: maybeParticipants,
             inline: false
         });

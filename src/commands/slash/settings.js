@@ -29,7 +29,7 @@ export const data = new SlashCommandBuilder()
                     .addChannelTypes(ChannelType.GuildText)
                     .setRequired(true)));
 
-export async function execute(interaction: ChatInputCommandInteraction) {
+export async function execute(interaction) {
     if (!interaction.guildId) {
         await interaction.reply({
             content: 'This command can only be used in a server.',
@@ -53,7 +53,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
             });
 
             // Update the channel mapping
-            const updateData: any = {};
+            const updateData = {};
             switch (type) {
                 case 'ROAD':
                     updateData.roadChannelId = channel.id;
