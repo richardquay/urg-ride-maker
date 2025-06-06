@@ -277,10 +277,34 @@ export async function execute(interaction) {
 
     } catch (error) {
         console.error('Error creating ride:', error);
-        await interaction.reply({ 
-            content: error instanceof Error ? error.message : 'Sorry, there was an error creating your ride. Please try again.',
-            ephemeral: true 
-        });
+        let userMessage = 'Sorry, something went wrong. Please try again or contact an admin.';
+
+        // Prisma/database error
+        if (error.code === 'P1001' || error.code === 'P1002' || error.code === 'P1003' || error.message?.includes('prisma') || error.message?.toLowerCase().includes('database')) {
+            userMessage = 'There was a problem connecting to the database. Please try again later or contact an admin.';
+        }
+        // Discord API error (missing permissions, channel not found, etc.)
+        else if (error.code === 50013 || error.message?.includes('Missing Permissions') || error.message?.includes('Could not find the target channel')) {
+            userMessage = 'I couldn\'t post the ride in the target channel. Please check my permissions and the channel ID.';
+        }
+        // Validation error (date/time, etc.)
+        else if (error.message?.toLowerCase().includes('invalid') || error.message?.toLowerCase().includes('format')) {
+            userMessage = 'There was a problem with your input. Please check the date, time, and other details.';
+        }
+        // Timeout
+        else if (error.message?.toLowerCase().includes('timeout')) {
+            userMessage = 'The operation timed out. Please try again.';
+        }
+
+        try {
+            if (interaction.deferred || interaction.replied) {
+                await interaction.editReply({ content: userMessage, ephemeral: true });
+            } else {
+                await interaction.reply({ content: userMessage, ephemeral: true });
+            }
+        } catch (err) {
+            console.error('Failed to send error reply:', err);
+        }
     }
 }
 
